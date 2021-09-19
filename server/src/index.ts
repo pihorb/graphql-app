@@ -111,3 +111,6 @@ app.listen(PORT, () =>
     📭  Query at https://studio.apollographql.com/dev
     `)
 )
+
+// deploy server
+// git subtree push --prefix server/ heroku master
