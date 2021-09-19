@@ -2,6 +2,7 @@ const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 const mode =
   process.env.NODE_ENV === 'production' ? 'production' : 'development'
@@ -46,5 +47,12 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.js', '.tsx'],
+  },
+  optimization: {
+    minimizer: [
+      // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
+      // `...`,
+      isDev ? null : new CssMinimizerPlugin(),
+    ],
   },
 }
