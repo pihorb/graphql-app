@@ -49,10 +49,6 @@ module.exports = {
     extensions: ['.ts', '.js', '.tsx'],
   },
   optimization: {
-    minimizer: [
-      // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
-      // `...`,
-      isDev ? null : new CssMinimizerPlugin(),
-    ],
+    minimizer: [new CssMinimizerPlugin()],
   },
 }
