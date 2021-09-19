@@ -10,6 +10,7 @@ import {
 } from 'graphql'
 import { books, authors } from './db'
 import { BookType, AuthorType } from './graphql-types'
+import cors from 'cors'
 
 const RootQueryType = new GraphQLObjectType({
   name: 'Query',
@@ -93,7 +94,9 @@ const schema = new GraphQLSchema({
 })
 
 const app = express()
-
+const PORT = process.env.PORT || 4000
+PORT
+app.use(cors())
 app.use(
   '/graphql',
   graphqlHTTP({
@@ -102,4 +105,9 @@ app.use(
   })
 )
 
-app.listen(4000, () => console.log('Now browse to localhost:4000/graphql'))
+app.listen(PORT, () =>
+  console.log(`
+    🚀  Server is ready at ${PORT}
+    📭  Query at https://studio.apollographql.com/dev
+    `)
+)
